@@ -1,0 +1,53 @@
+using System;
+
+class MelonsAndWatermelons
+{
+    static void Main()
+    {
+        int s = int.Parse(Console.ReadLine());
+        int d = int.Parse(Console.ReadLine());
+        int amountW = 0;
+        int amountM = 0;
+        int w = 0;
+        int m = 0;
+        for (int i = s, k=0; k < d; i++,k++)
+        {
+            switch (i)
+            {
+                case 1: w = 1; m = 0;
+                break;
+                case 2: w = 0; m = 2;
+                break;
+                case 3: w= 1; m= 1;
+                break;
+                case 4: w= 2; m = 0;
+                break;
+                case 5: w = 2; m= 2;
+                break;
+                case 6: w= 1; m = 2;
+                break;
+                case 7: w= 0; m = 0;
+                break;
+            }
+            amountW += w;
+            amountM += m;
+            if (i==7)
+            {
+                i = 0;   
+            }
+        }
+        if (amountW==amountM)
+        {
+            Console.WriteLine("Equal amount: {0}",amountW);
+        }
+        else if (amountM<amountW)
+        {
+            Console.WriteLine("{0} more watermelons",Math.Abs(amountW-amountM));
+        }
+        else
+        {
+            Console.WriteLine("{0} more melons", Math.Abs(amountW - amountM));
+        }
+    }
+}
+
