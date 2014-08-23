@@ -1,0 +1,96 @@
+using System;
+
+class PandaScotlandFlag
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        string letters = "abcdefghijklmnopqrstuvwxyz";
+        string upperLetters = letters.ToUpper();
+        char []letter=new char[letters.Length];
+        for (int j = 0; j < letter.Length; j++)
+		{
+			letter[j]=Convert.ToChar(upperLetters[j]);
+		}
+        int k = 0;
+        int l = 0;
+        int i = 0;
+        string sharp = new string('#', k);
+        string proportional=new string('~',l);
+        string hyphen = new string('-', (n - 1) / 2);
+        for (int m=2,row=1; row <=(n + 1) / 2;row++,m=m+2)
+        {
+            if (k>=0)
+            {
+                k = n - m;
+            }
+            if (row==1)
+            {
+                if (k<0)
+                {
+                    k = 0;
+                    sharp = new string('#', k);
+                    Console.Write(letter[i]);
+                    break;
+                }
+                sharp = new string('#', k);
+                Console.Write(letter[i]);
+                Console.Write(sharp);
+                Console.Write(letter[i=FindNumber(i, letter.Length)]);
+                Console.WriteLine();  
+            }
+            else if (k>0)
+            {
+                proportional = new string('~', ++l);
+                sharp = new string('#', k);
+                Console.Write(proportional);
+                Console.Write(letter[i=FindNumber(i, letter.Length)]);
+                Console.Write(sharp);
+                Console.Write(letter[i=FindNumber(i, letter.Length)]);
+                Console.Write(proportional);
+                Console.WriteLine();
+            }
+            if (row == (n + 1) / 2)
+            {
+                Console.Write(hyphen);
+                Console.Write(letter[i=FindNumber(i, letter.Length)]);
+                Console.Write(hyphen);
+                Console.WriteLine();
+            }
+        }
+        for (int row=1; row <=n-((n+1)/2); row++)
+        {
+            k = k + 2;
+            if (row == n - ((n + 1) / 2))
+            {
+                sharp = new string('#', k);
+                Console.Write(letter[i=FindNumber(i, letter.Length)]);
+                Console.Write(sharp);
+                Console.Write(letter[i=FindNumber(i, letter.Length)]);
+                Console.WriteLine();
+            }
+            else 
+            {
+                proportional = new string('~', l);
+                sharp = new string('#', k);
+                Console.Write(proportional);
+                Console.Write(letter[i=FindNumber(i, letter.Length)]);
+                Console.Write(sharp);
+                Console.Write(letter[i=FindNumber(i, letter.Length)]);
+                Console.Write(proportional);
+                Console.WriteLine();
+                l--;
+            }
+        }
+    }
+    public static int FindNumber(int i, int p)
+    {
+        i++;
+        if (i>=p)
+        {
+            i = 0; 
+        }
+        return i;
+    }
+}
+
